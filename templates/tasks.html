@@ -1,49 +1,40 @@
-{% extends "base.html" %} {% block title %} Task Manager {% endblock
-%} {% block content %} 
+{% extends "base.html" %} {% block title %} Task Manager {% endblock %} {% block
+main %}
 
 <div style="position: absolute; top: 1rem; right: 1rem">
   {% if role == 'superadmin' %}
-  <a href="/users" class="btn btn-primary">
-    Manage users
-  </a>
+  <a href="/users" class="btn btn-primary"> Manage users </a>
   {% endif %}
-  
-  <a
-  href="/logout"
-  class="btn btn-danger">
-  Log out
-  </a>
+
+  <a href="/logout" class="btn btn-danger"> Log out </a>
 </div>
-  
-<div
-  class="container"
-  style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-  "
->
-    <h2 style="margin-top: 5rem;">Add Task</h2>
-    <form class="form-horizontal" method="POST" action="">
-      {{ form.hidden_tag() }}
-      <div class="form-group">
-        {{ form.title.label(class="form-label") }} {{
-        form.title(class="form-control", size=32) }}
-      </div>
-      <div class="form-group">
-        {{ form.description.label(class="form-label") }} {{
-        form.description(class="form-control", size=32) }}
-      </div>
-      <div class="form-group">
-        {{ form.deadline.label(class="form-label") }} {{
-        form.deadline(class="form-control", size=32) }}
-      </div>
-      <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
-    </form>
 
+<div class="container" style="margin-top: 5rem">
+  <div
+    class="row"
+    style="display: flex; flex-direction: column; align-items: center"
+  >
+    <div class="col-sm-9">
+      <h2>Add Task</h2>
+      <form class="form-horizontal" method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.title.label(class="form-label") }} {{
+          form.title(class="form-control", size=32) }}
+        </div>
+        <div class="form-group">
+          {{ form.description.label(class="form-label") }} {{
+          form.description(class="form-control", size=32) }}
+        </div>
+        <div class="form-group">
+          {{ form.deadline.label(class="form-label") }} {{
+          form.deadline(class="form-control", size=32) }}
+        </div>
+        <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+      </form>
+    </div>
 
-    <div class="mt-5" style="width: 100%">
+    <div class="col-sm-9 tasks-list">
       {% if tasks %}
       <h2>Tasks</h2>
       {% endif %}
@@ -54,7 +45,7 @@
           <p style="position: absolute; top: 1rem; right: 1rem">
             {{ task.deadline.date() }}
           </p>
-          <p>{{ task.description }}</p>
+          <p style="word-break: break-all">{{ task.description }}</p>
           <div
             style="width: 100%; display: flex; gap: 1rem; justify-content: end"
           >

@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="icon" href="{{ url_for('static', filename='bocchi.jpg') }}" />
-    <title>{% block title %}{% endblock %}</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    {% with messages = get_flashed_messages() %} {% if messages %}
-    <ul class="flashes list-group">
-      {% for message in messages %}
-      <li class="list-group-item">{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %} {% endwith %} {% block content %}{% endblock %}
-  </body>
-</html>
+{% extends "bootstrap/base.html" %} {% import "bootstrap/fixes.html" as fixes %}
+{% block head %} {{super()}}
+<link
+  rel="icon"
+  href="{{ url_for('static', filename='bocchi.jpg') }}"
+  type="image/x-icon"
+/>
+{% endblock %} {% block styles -%} {{super()}} {# do not forget to call super or
+Bootstrap's own stylesheets will disappear! #}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('static', filename='style.css')}}"
+/>
+{% endblock %} {% block title %}{% endblock %} {% block content %} {% block main
+%} {%- endblock %} {% block footer %}
+<div class="container">
+  <div id="footer" style="display: flex; justify-content: center">
+    <p>&copy 2024 LeBulbasaur</p>
+  </div>
+</div>
+{%- endblock %} {%- endblock %}
