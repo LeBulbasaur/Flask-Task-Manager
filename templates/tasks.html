@@ -1,0 +1,79 @@
+{% extends "bootstrap/base.html" %} {% block title %} Task Manager {% endblock
+%} {% block content %} 
+
+<div style="position: absolute; top: 1rem; right: 1rem">
+  {% if role == 'superadmin' %}
+  <a href="/users" class="btn btn-primary">
+    Manage users
+  </a>
+  {% endif %}
+  
+  <a
+  href="/logout"
+  class="btn btn-danger">
+  Log out
+  </a>
+</div>
+  
+<div
+  class="container"
+  style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  "
+>
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <ul class="flashes list-group">
+    {% for message in messages %}
+    <li class="list-group-item">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} {% endwith %}
+    <h2 style="margin-top: 5rem;">Add Task</h2>
+    <form class="form-horizontal" method="POST" action="">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.title.label(class="form-label") }} {{
+        form.title(class="form-control", size=32) }}
+      </div>
+      <div class="form-group">
+        {{ form.description.label(class="form-label") }} {{
+        form.description(class="form-control", size=32) }}
+      </div>
+      <div class="form-group">
+        {{ form.deadline.label(class="form-label") }} {{
+        form.deadline(class="form-control", size=32) }}
+      </div>
+      <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+    </form>
+
+
+    <div class="mt-5" style="width: 100%">
+      {% if tasks %}
+      <h2>Tasks</h2>
+      {% endif %}
+      <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item" style="position: relative">
+          <h3 style="margin-top: 0">{{ task.title }}</h3>
+          <p style="position: absolute; top: 1rem; right: 1rem">
+            {{ task.deadline.date() }}
+          </p>
+          <p>{{ task.description }}</p>
+          <div
+            style="width: 100%; display: flex; gap: 1rem; justify-content: end"
+          >
+            <a href="/task/{{ task.id }}/edit" class="btn btn-primary">Edit</a>
+            <a href="/task/{{ task.id }}/delete" class="btn btn-danger"
+              >Delete</a
+            >
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
