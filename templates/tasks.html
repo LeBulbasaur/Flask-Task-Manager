@@ -1,4 +1,4 @@
-{% extends "bootstrap/base.html" %} {% block title %} Task Manager {% endblock
+{% extends "base.html" %} {% block title %} Task Manager {% endblock
 %} {% block content %} 
 
 <div style="position: absolute; top: 1rem; right: 1rem">
@@ -24,13 +24,6 @@
     height: 100vh;
   "
 >
-  {% with messages = get_flashed_messages() %} {% if messages %}
-  <ul class="flashes list-group">
-    {% for message in messages %}
-    <li class="list-group-item">{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} {% endwith %}
     <h2 style="margin-top: 5rem;">Add Task</h2>
     <form class="form-horizontal" method="POST" action="">
       {{ form.hidden_tag() }}

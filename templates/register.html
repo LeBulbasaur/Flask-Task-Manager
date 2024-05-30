@@ -1,18 +1,11 @@
-{% extends "bootstrap/base.html" %} {% block title %}Register{% endblock %} {%
-block content %}
+{% extends "base.html" %} {% block title %}Register{% endblock %} {% block
+content %}
 <div
   class="container"
   style="display: flex; justify-content: center; height: 100vh"
 >
   <div class="row">
     <div class="col">
-      {% with messages = get_flashed_messages() %} {% if messages %}
-      <ul class="flashes list-group">
-        {% for message in messages %}
-        <li class="list-group-item">{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %} {% endwith %}
       <h2 class="text-center" style="margin-top: 5rem">Register</h2>
       <form class="form-horizontal" method="POST" action="">
         {{ form.hidden_tag() }}
