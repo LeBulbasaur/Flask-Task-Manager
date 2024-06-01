@@ -9,5 +9,6 @@ Modules:
 
 - users: This module is responsible for user management. It allows for the management of user profiles (only available for superadmin (user: admin, pass: admin)).
 
-Features
+Features:
+
 The application uses a SQLAlchemy database for data storage and a Flask-Bootstrap for simple user interface creation. The task manager feature allows users to keep track of their tasks, making it a useful tool for productivity.
